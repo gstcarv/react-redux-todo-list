@@ -23,11 +23,13 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
   function addTodo(e) {
     e.preventDefault()
-    if(!editingTodo){
-      dispatch(TodoActions.addTodo(todoTitle))
-      setTodoTitle('')
-    } else {
-      updateTodo()
+    if (todoTitle.length > 3) {
+      if (!editingTodo) {
+        dispatch(TodoActions.addTodo(todoTitle))
+        setTodoTitle('')
+      } else {
+        updateTodo()
+      }
     }
   }
 
@@ -55,6 +57,7 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
           {!editingTodo &&
             <Button
+              disabled={todoTitle.length < 3}
               type="submit"
               block
               variant="dark">ADD
@@ -64,6 +67,7 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
             <Form.Row>
               <Col>
                 <Button
+                  disabled={todoTitle.length < 3}
                   block
                   variant="outline-success"
                   onClick={updateTodo}>
