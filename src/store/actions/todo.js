@@ -25,3 +25,10 @@ export function completeTodo(todoID){
     todoID
   }
 }
+
+export function reloadTodo(todoID){
+  return {
+    type: 'RELOAD_TODO',
+    todoID
+  }
+}

@@ -53,6 +53,17 @@ function reducer(state = INITIAL_STATE, action) {
         })
       }
     }
+    // Reload na Todo
+    case 'RELOAD_TODO': {
+      return {
+        ...state,
+        todos: state.todos.map(t => {
+          if (t.id == action.todoID)
+            t.completed = false
+          return t
+        })
+      }
+    }
   }
   return state
 }

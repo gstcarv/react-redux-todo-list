@@ -19,6 +19,10 @@ function TodosTable({ todos, dispatch }) {
     dispatch(TodoActions.completeTodo(todoID))
   }
 
+  function reloadTodo(todoID) {
+    dispatch(TodoActions.reloadTodo(todoID))
+  }
+
   return (
     <Table striped bordered hover className="todos-table">
       <thead>
@@ -55,7 +59,7 @@ function TodosTable({ todos, dispatch }) {
 
             {
               completed &&
-              <td colSpan="3" className="text-center text-info" onClick={() => completeTodo(id)}>
+              <td colSpan="3" className="text-center text-info" onClick={() => reloadTodo(id)}>
                 <FontAwesomeIcon icon={faUndo} />
               </td>
             }
