@@ -1,0 +1,11 @@
+.todos-table {
+
+}
+
+.todos-table .title-col {
+  width: 60%;
+}
+
+.todos-table td.text-center {
+  cursor: pointer;
+}
