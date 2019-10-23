@@ -1,11 +1,14 @@
 import React from 'react';
 import './styles.css'
+
+import { connect } from 'react-redux';
+
 import { Table } from 'react-bootstrap'
 
 import { faTrash, faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-const TodosTable = () => (
+const TodosTable = ({ todos }) => (
   <Table striped bordered hover className="todos-table">
     <thead>
       <tr>
@@ -15,73 +18,29 @@ const TodosTable = () => (
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Say Hello</td>
-        <td className="text-center text-danger">
-          <FontAwesomeIcon icon={faTrash}/>
-        </td>
-        <td className="text-center text-info">
-          <FontAwesomeIcon icon={faPen}/>
-        </td>
-        <td className="text-center text-success">
-          <FontAwesomeIcon icon={faCheck}/>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Say Hello</td>
-        <td className="text-center text-danger">
-          <FontAwesomeIcon icon={faTrash}/>
-        </td>
-        <td className="text-center text-info">
-          <FontAwesomeIcon icon={faPen}/>
-        </td>
-        <td className="text-center text-success">
-          <FontAwesomeIcon icon={faCheck}/>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Say Hello</td>
-        <td className="text-center text-danger">
-          <FontAwesomeIcon icon={faTrash}/>
-        </td>
-        <td className="text-center text-info">
-          <FontAwesomeIcon icon={faPen}/>
-        </td>
-        <td className="text-center text-success">
-          <FontAwesomeIcon icon={faCheck}/>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Say Hello</td>
-        <td className="text-center text-danger">
-          <FontAwesomeIcon icon={faTrash}/>
-        </td>
-        <td className="text-center text-info">
-          <FontAwesomeIcon icon={faPen}/>
-        </td>
-        <td className="text-center text-success">
-          <FontAwesomeIcon icon={faCheck}/>
-        </td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Say Hello</td>
-        <td className="text-center text-danger">
-          <FontAwesomeIcon icon={faTrash}/>
-        </td>
-        <td className="text-center text-info">
-          <FontAwesomeIcon icon={faPen}/>
-        </td>
-        <td className="text-center text-success">
-          <FontAwesomeIcon icon={faCheck}/>
-        </td>
-      </tr>
+
+      {todos.map(({ id, title }) => (
+        <tr key={id}>
+          <td>{id}</td>
+          <td>{title}</td>
+          <td className="text-center text-danger">
+            <FontAwesomeIcon icon={faTrash} />
+          </td>
+          <td className="text-center text-info">
+            <FontAwesomeIcon icon={faPen} />
+          </td>
+          <td className="text-center text-success">
+            <FontAwesomeIcon icon={faCheck} />
+          </td>
+        </tr>
+      ))}
+
     </tbody>
   </Table>
 );
 
-export default TodosTable;
+const mapStateToProps = state => ({
+  todos: state.todo.todos
+});
+
+export default connect(mapStateToProps)(TodosTable);
