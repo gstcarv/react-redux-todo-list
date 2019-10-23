@@ -65,7 +65,7 @@ function TodosTable({ todos, dispatch, setEditingTodo, editingTodo }) {
                   <FontAwesomeIcon icon={faTrash} />
                 </td>
                 <td className="text-center text-info" onClick={() => setEditingTodo({ id, title })}
-                    colSpan={(!editingTodo || editingTodo.id != id) ? 1 : 2}>
+                  colSpan={(!editingTodo || editingTodo.id != id) ? 1 : 2}>
                   <FontAwesomeIcon icon={faPen} />
                 </td>
 
@@ -87,6 +87,11 @@ function TodosTable({ todos, dispatch, setEditingTodo, editingTodo }) {
 
           </tr>
         ))}
+
+        {todos.length == 0 &&
+          <tr>
+            <td colspan="5" class="text-center">Nothing here. Add your first todo!</td>
+          </tr>}
 
       </tbody>
     </Table>

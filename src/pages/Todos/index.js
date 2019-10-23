@@ -17,7 +17,7 @@ function Todos() {
     <Container fluid className="p-3">
       <Row>
         <Col sm={7}>
-          <h4>Add new Todo</h4>
+          <h4>{ !editingTodo ? "Add new Todo" : "Edit Todo" }</h4>
           <NewTodo
             editingTodo={editingTodo}
             setEditingTodo={setEditingTodo}

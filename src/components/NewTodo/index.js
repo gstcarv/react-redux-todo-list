@@ -23,8 +23,12 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
   function addTodo(e) {
     e.preventDefault()
-    dispatch(TodoActions.addTodo(todoTitle))
-    setTodoTitle('')
+    if(!editingTodo){
+      dispatch(TodoActions.addTodo(todoTitle))
+      setTodoTitle('')
+    } else {
+      updateTodo()
+    }
   }
 
   function updateTodo() {
@@ -37,7 +41,7 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
   }
 
   return (
-    <Form onSubmit={e => e.preventDefault()}>
+    <Form onSubmit={addTodo}>
       <Form.Row>
         <Col sm={9} className="pb-2">
           <Form.Control
@@ -51,9 +55,9 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
           {!editingTodo &&
             <Button
+              type="submit"
               block
-              variant="dark"
-              onClick={addTodo}>ADD
+              variant="dark">ADD
           </Button>}
 
           {editingTodo &&
