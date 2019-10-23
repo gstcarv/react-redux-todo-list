@@ -4,3 +4,10 @@ export function addTodo(todoTitle){
     todoTitle
   }
 }
+
+export function deleteTodo(todoID){
+  return {
+    type: "DELETE_TODO",
+    todoID
+  }
+}

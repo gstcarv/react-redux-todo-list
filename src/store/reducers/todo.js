@@ -5,13 +5,30 @@ const INITIAL_STATE = {
 
 function reducer(state = INITIAL_STATE, action) {
   switch(action.type){
+    // Adicionar a Todo
     case 'ADD_TODO': {
       return {
         lastIndex: ++state.lastIndex,
         todos: [
           ...state.todos,
-          { id: state.lastIndex, title: action.todoTitle }
+          { 
+            id: state.lastIndex, 
+            title: action.todoTitle,
+            deleted: false,
+            completed: false
+          }
         ]
+      }
+    }
+    // Deleta a Todo
+    case 'DELETE_TODO': {
+      return {
+        ...state,
+        todos: state.todos.map(t => {
+          if(t.id == action.todoID)
+            t.deleted = true
+          return t
+        })
       }
     }
   }
