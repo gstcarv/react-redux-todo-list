@@ -90,7 +90,7 @@ function TodosTable({ todos, dispatch, setEditingTodo, editingTodo }) {
 
         {todos.length == 0 &&
           <tr>
-            <td colspan="5" class="text-center">Nothing here. Add your first todo!</td>
+            <td colSpan="5" className="text-center">Nothing here. Add your first todo!</td>
           </tr>}
 
       </tbody>

@@ -23,7 +23,7 @@ function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
   function addTodo(e) {
     e.preventDefault()
-    if (todoTitle.length > 3) {
+    if (todoTitle.length >= 3) {
       if (!editingTodo) {
         dispatch(TodoActions.addTodo(todoTitle))
         setTodoTitle('')
