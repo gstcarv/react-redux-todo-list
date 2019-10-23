@@ -42,6 +42,17 @@ function reducer(state = INITIAL_STATE, action) {
         })
       }
     }
+    // Completa a Todo
+    case 'COMPLETE_TODO': {
+      return {
+        ...state,
+        todos: state.todos.map(t => {
+          if (t.id == action.todoID)
+            t.completed = true
+          return t
+        })
+      }
+    }
   }
   return state
 }

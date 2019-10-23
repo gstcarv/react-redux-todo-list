@@ -18,3 +18,10 @@ export function restoreTodo(todoID){
     todoID
   }
 }
+
+export function completeTodo(todoID){
+  return {
+    type: 'COMPLETE_TODO',
+    todoID
+  }
+}

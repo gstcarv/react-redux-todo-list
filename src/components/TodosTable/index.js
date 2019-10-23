@@ -6,13 +6,17 @@ import * as TodoActions from '../../store/actions/todo'
 
 import { Table } from 'react-bootstrap'
 
-import { faTrash, faPen, faCheck } from "@fortawesome/free-solid-svg-icons";
+import { faTrash, faPen, faCheck, faUndo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 function TodosTable({ todos, dispatch }) {
 
-  function deleteTodo(todoID){
+  function deleteTodo(todoID) {
     dispatch(TodoActions.deleteTodo(todoID))
+  }
+
+  function completeTodo(todoID) {
+    dispatch(TodoActions.completeTodo(todoID))
   }
 
   return (
@@ -26,19 +30,36 @@ function TodosTable({ todos, dispatch }) {
       </thead>
       <tbody>
 
-        {todos.map(({ id, title }) => (
-          <tr key={id}>
+        {todos.map(({ id, title, completed }) => (
+          <tr key={id} style={{
+            textDecoration: completed ? 'line-through' : 'initial',
+            opacity: completed ? .3 : 1
+          }}>
             <td>{id}</td>
             <td>{title}</td>
-            <td className="text-center text-danger" onClick={() => deleteTodo(id)}>
-              <FontAwesomeIcon icon={faTrash} />
-            </td>
-            <td className="text-center text-info">
-              <FontAwesomeIcon icon={faPen} />
-            </td>
-            <td className="text-center text-success">
-              <FontAwesomeIcon icon={faCheck} />
-            </td>
+
+            {
+              !completed &&
+              <>
+                <td className="text-center text-danger" onClick={() => deleteTodo(id)}>
+                  <FontAwesomeIcon icon={faTrash} />
+                </td>
+                <td className="text-center text-info">
+                  <FontAwesomeIcon icon={faPen} />
+                </td>
+                <td className="text-center text-success" onClick={() => completeTodo(id)}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </td>
+              </>
+            }
+
+            {
+              completed &&
+              <td colSpan="3" className="text-center text-info" onClick={() => completeTodo(id)}>
+                <FontAwesomeIcon icon={faUndo} />
+              </td>
+            }
+
           </tr>
         ))}
 
