@@ -11,3 +11,10 @@ export function deleteTodo(todoID){
     todoID
   }
 }
+
+export function restoreTodo(todoID){
+  return {
+    type: 'RESTORE_TODO',
+    todoID
+  }
+}
