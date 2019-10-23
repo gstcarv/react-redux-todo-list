@@ -1,4 +1,6 @@
 import React from 'react';
+import './styles.css'
+
 import { Jumbotron } from 'react-bootstrap'
 
 import { connect } from 'react-redux'
@@ -17,7 +19,7 @@ function DeletedTodos({ deletedTodos, dispatch }) {
     <Jumbotron>
       <h6 className="text-danger">Deleted Todos</h6>
       {deletedTodos.length == 0 && <p>Nothing here</p>}
-      <ul>
+      <ul className="deleted-todos-list">
         {deletedTodos.map(todo => (
           <li key={todo.id}>
             {todo.title}

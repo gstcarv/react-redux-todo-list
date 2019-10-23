@@ -32,3 +32,10 @@ export function reloadTodo(todoID){
     todoID
   }
 }
+
+export function editTodo({ id, title }){
+  return {
+    type: 'EDIT_TODO',
+    todo: { id, title }
+  }
+}

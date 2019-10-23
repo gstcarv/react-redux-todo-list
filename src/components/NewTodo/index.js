@@ -1,23 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './styles.css'
 
 import { connect } from 'react-redux'
 import * as TodoActions from '../../store/actions/todo'
 
+import { faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { Form, Button, Col } from 'react-bootstrap'
 
-function NewTodo({ dispatch }) {
+function NewTodo({ dispatch, editingTodo, setEditingTodo }) {
 
   const [todoTitle, setTodoTitle] = useState('')
 
-  function addTodo(e){
+  useEffect(() => {
+    if (editingTodo) {
+      setTodoTitle(editingTodo.title)
+    } else {
+      setTodoTitle("")
+    }
+  }, [editingTodo])
+
+  function addTodo(e) {
     e.preventDefault()
     dispatch(TodoActions.addTodo(todoTitle))
     setTodoTitle('')
   }
 
+  function updateTodo() {
+    const editedTodo = {
+      ...editingTodo,
+      title: todoTitle
+    }
+    dispatch(TodoActions.editTodo(editedTodo))
+    setEditingTodo(null)
+  }
+
   return (
-    <Form onSubmit={addTodo}>
+    <Form onSubmit={e => e.preventDefault()}>
       <Form.Row>
         <Col sm={9} className="pb-2">
           <Form.Control
@@ -28,10 +48,34 @@ function NewTodo({ dispatch }) {
           />
         </Col>
         <Col sm={3}>
-          <Button 
-            type="submit"
-            block 
-            variant="dark">ADD</Button>
+
+          {!editingTodo &&
+            <Button
+              block
+              variant="dark"
+              onClick={addTodo}>ADD
+          </Button>}
+
+          {editingTodo &&
+            <Form.Row>
+              <Col>
+                <Button
+                  block
+                  variant="outline-success"
+                  onClick={updateTodo}>
+                  <FontAwesomeIcon icon={faCheck} />
+                </Button>
+              </Col>
+              <Col>
+                <Button
+                  block
+                  variant="outline-danger"
+                  onClick={() => setEditingTodo(null)}>
+                  <FontAwesomeIcon icon={faTimes} />
+                </Button>
+              </Col>
+            </Form.Row>}
+
         </Col>
       </Form.Row>
     </Form>

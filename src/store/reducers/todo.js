@@ -64,6 +64,17 @@ function reducer(state = INITIAL_STATE, action) {
         })
       }
     }
+    // Editar a Todo
+    case 'EDIT_TODO': {
+      return {
+        ...state,
+        todos: state.todos.map(t => {
+          if (t.id == action.todo.id)
+            t = { ...t, title: action.todo.title }
+          return t
+        })
+      }
+    }
   }
   return state
 }

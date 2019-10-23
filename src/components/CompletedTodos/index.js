@@ -1,4 +1,6 @@
 import React from 'react';
+import './styles.css'
+
 import { connect } from 'react-redux'
 
 import { faCheck } from '@fortawesome/free-solid-svg-icons'
@@ -10,9 +12,9 @@ const CompletedTodos = ({ completedTodos }) => (
   <Jumbotron>
     <h6 className="text-success">Completed Todos</h6>
     {completedTodos.length == 0 && <p>Nothing here</p>}
-    <ul>
+    <ul className="completed-todos-list">
       {completedTodos.map(todo => (
-        <li key={todo.id} style={{ listStyle: 'none' }}>
+        <li key={todo.id}>
           <FontAwesomeIcon
             icon={faCheck}
             className="text-secondary mr-3"
