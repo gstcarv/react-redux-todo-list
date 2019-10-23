@@ -1,0 +1,1 @@
+{"version":3,"sources":["styles.css"],"names":[],"mappings":"AAAA,MACE,UACF,CAEA,YACE,cAAe,CACf,eACF,CAHA,wBACE,SACF,CAEA,4BACE,cACF,CAVA,sBACE,eAAgB,CAChB,SACF,CAHA,oBACE,SAAU,CACV,gBACF","file":"main.7b14b430.chunk.css","sourcesContent":[".deleted-todos-list {\r\n  padding: 0;\r\n  margin-left: 20px\r\n}"]}
